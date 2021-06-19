@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="jumbotron text-center border-bottom">
+      <h1 class="font-weight-bold">Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape some Data!</a></p>
+    </div>
+    <div class="row">
+      <h2>Latest Mars News:</h2>
+      <h2>{{ mars.News_title }}</h2>
+      <p>{{ mars.News_paragraph }}</p>
+    </div>
+
+  <hr>
+  <div class="row">
+    <div class="col-md-8 border">
+      <h2 class=""><u>Featured Mars Image</u></h2> 
+      </br>
+      <img class="col-md-12 border" src="{{mars.Featured_image_url}}" alt="Features Mars Image">
+    </div>
+
+    <div class="col-md-4">
+      </br>
+        <div class="card">
+          <h3>Mars Facts</h3>
+            {{ mars.Mars_facts_tbl | safe}}
+        </div>
+    </div>
+  </div>
+<hr>
+<!-- class="col-md-8 offset-4" -->
+  <div class="row">
+    <div>
+      <h2 class="text-center"><u>Mars hemispheres</u></h2>  
+    </div>
+  </div>
+  <br>
+  <div class="row">       
+        {% for hem in mars.Mars_hem_imgs %} 
+          <div class="col-md-3 border">
+          <br>
+              <div>
+                <img width="350 px" height="350 px" src="{{ hem.image_url }}">
+              </div>
+            
+              <div>
+                <h4> {{ hem.title }} </h4>  
+              </div>
+        
+          </div>
+        {% endfor %}
+  </div> 
+</div>
+
+</body>
+</html>
